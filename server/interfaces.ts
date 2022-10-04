@@ -37,3 +37,22 @@ export interface IComment extends Document {
   comment: string
   parent: ObjectId
 }
+
+export interface IReturnPayload {
+  error: string | null
+  data:
+    | IUser
+    | IProfile
+    | IPost
+    | IMessage
+    | IChat
+    | IComment
+    | IUser[]
+    | IProfile[]
+    | IPost[]
+    | IMessage[]
+    | IChat[]
+    | IComment[]
+    | null
+  status: number
+}
