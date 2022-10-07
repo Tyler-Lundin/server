@@ -1,9 +1,12 @@
 import { Schema, model } from 'mongoose'
 
 const profileSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
   profilePicture: {
     type: String,
-    required: true,
     default: '',
   },
   comments: {
@@ -20,7 +23,6 @@ const profileSchema = new Schema({
   },
   bio: {
     type: String,
-    required: true,
     default: '',
   },
 })

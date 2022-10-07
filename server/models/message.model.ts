@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose'
+import { IMessage } from '../interfaces'
 
-const messageSchema = new Schema({
+const messageSchema = new Schema<IMessage>({
   sender: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -13,7 +14,7 @@ const messageSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Message',
   },
-  message: {
+  text: {
     type: String,
     required: true,
   },

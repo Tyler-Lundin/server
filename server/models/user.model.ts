@@ -19,7 +19,7 @@ const userSchema = new Schema({
     required: true,
   },
   profile: {
-    type: Array<Schema.Types.ObjectId>(),
+    type: Schema.Types.ObjectId,
     ref: 'Profile',
   },
 })

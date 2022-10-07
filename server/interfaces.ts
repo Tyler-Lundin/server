@@ -1,3 +1,4 @@
+import { Request, Response } from 'express'
 import { Document, ObjectId } from 'mongoose'
 
 export interface IUser extends Document {
@@ -38,9 +39,12 @@ export interface IComment extends Document {
   parent: ObjectId
 }
 
-export interface IReturnPayload {
+export interface IResponse {
+  status: number
+  statusMessage: string | null
   error: string | null
   data:
+    | { message: string }
     | IUser
     | IProfile
     | IPost
@@ -54,5 +58,31 @@ export interface IReturnPayload {
     | IChat[]
     | IComment[]
     | null
-  status: number
+}
+
+export interface ICases {
+  [key: string]: () => void
+}
+
+export interface ISet {
+  response: (res: IResponse) => void
+  status: (status: number) => void
+  statusMessage: (statusMessage: string) => void
+  error: (error: string) => void
+  data: (data: any) => void
+  cookie: (name: string, value: string) => void
+}
+
+export interface IChatBody {
+  chatName?: string
+  chatID?: string
+  message?: IMessage
+}
+
+export interface IControls {
+  [key: string | symbol]: (req: Request, res: IResponse) => Promise<IResponse>
+}
+
+export interface IController {
+  (req: Request, res: Response): Promise<void>
 }

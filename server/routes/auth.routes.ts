@@ -1,15 +1,21 @@
 import { Router } from 'express'
 import asyncHandler from 'express-async-handler'
-import authController from '../controllers/auth.controller'
-import usedConsoleLog from '../util/usedConsoleLog'
+import authController from '../controllers/auth/auth.controller'
+
 const router = Router()
 
-router.use(
+router.post(
+  '/login',
   asyncHandler(async (req, res) => {
-    authController(req, res)
+    authController(req, res, 'login')
   })
 )
 
-// router.post('/login', usedConsoleLog)
+router.post(
+  '/register',
+  asyncHandler(async (req, res) => {
+    authController(req, res, 'register')
+  })
+)
 
 export default router
